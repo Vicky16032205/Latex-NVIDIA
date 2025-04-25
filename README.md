@@ -60,6 +60,27 @@ Developed during an NVIDIA Internship, this project is an end-to-end platform th
 4. 🧾 Generate PDF
    - Markdown output is converted to LaTeX using ToLatex.py.
    - A polished PDF is compiled with structure, images, and references.
+  
+## 📁 Project Structure
+```
+.ResearchPaperSummarizer
+├── data/
+├── extracted/
+├── images/
+├── latex-output/
+├── output_directory/
+├── README.md
+├── ToLatex.py
+├── app.py
+├── arxiv.sty
+├── automation.py
+├── lln_prompt.py
+├── paper.md
+├── parser.py
+├── requirements.txt
+├── retrieval.py
+└── usegemini.py
+```
 
 ## 🧪 Example Use Case
 
