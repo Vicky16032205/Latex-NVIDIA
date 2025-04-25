@@ -65,21 +65,26 @@ Developed during an NVIDIA Internship, this project is an end-to-end platform th
 ```
 .ResearchPaperSummarizer
 ├── data/
+│   └── (Contents of the data directory - e.g., sample_data.csv)
 ├── extracted/
+│   └── (Contents of the extracted directory)
 ├── images/
+│   └── (Contents of the images directory - e.g., logo.png)
 ├── latex-output/
+│   └── (Generated LaTeX files)
 ├── output_directory/
-├── README.md
-├── ToLatex.py
-├── app.py
-├── arxiv.sty
-├── automation.py
-├── lln_prompt.py
-├── paper.md
-├── parser.py
-├── requirements.txt
-├── retrieval.py
-└── usegemini.py
+│   └── (Output files from scripts)
+├── README.md          (This file - provides an overview of the repository)
+├── ToLatex.py         (Python script to convert to LaTeX)
+├── app.py             (Main application file)
+├── arxiv.sty          (LaTeX style file for arXiv)
+├── automation.py      (Script for automated tasks)
+├── lln_prompt.py      (Script related to large language model prompts)
+├── paper.md           (Markdown source for the research paper)
+├── parser.py          (Script for parsing data)
+├── requirements.txt   (List of Python dependencies)
+├── retrieval.py       (Script for information retrieval)
+└── usegemini.py       (Script utilizing the Gemini model)
 ```
 
 ## 🧪 Example Use Case
