@@ -98,3 +98,5 @@ Developed during an NVIDIA Internship, this project is an end-to-end platform th
   - 🔍 Query-specific insights
   - 📊 Results & Discussion
   - 📎 Formatted references
+
+## Screenshots
