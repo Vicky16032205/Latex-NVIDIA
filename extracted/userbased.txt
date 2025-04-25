@@ -1,0 +1,82 @@
+
+        I am providing a JSON containing text excerpts that match a user's query with a similarity score of 0.85 or higher. Your task is to generate concise, well-structured, and contextually relevant headings, sub-headings, and summaries based on this content.
+
+        ### Instructions:
+        - Extract headings from the "sub-heading" key in the provided JSON, removing any initial numbers or prefixes.
+        - If multiple "sub-headings" share the same core idea, provide distinct headings and unique summaries for each perspective.
+        - Include relevant sub-headings under their respective headings using the Markdown "###" format.
+        - Ensure headings, sub-headings, and summaries are clear, concise, and directly relevant to the user’s query.
+        - Retain key insights while eliminating redundancy and unnecessary details.
+        - Synthesize different perspectives from the content into unified, coherent summaries where applicable.
+        - Ensure the output is structured for accurate LaTeX conversion:
+            - Use `$...$` for inline formulas (e.g., `$E = mc^2$`).
+            - Use `$$...$$` for block-level formulas.
+            - Maintain proper nesting of headings and sub-headings.
+
+        ### Input:
+            [
+    {
+        "text": "As the name implies, the convolutional layer plays a vital role in how CNNs operate. The layers parameters focus around the use of learnable kernels.\n\nThese kernels are usually small in spatial dimensionality, but spreads along the entirety of the depth of the input. When the data hits a convolutional layer, the layer convolves each filter across the spatial dimensionality of the input to produce a 2D activation map. These activation maps can be visualised, as seen in Figure 3.\n\nAs we glide through the input, the scalar product is calculated for each value in that kernel. (Figure 4) From this the network will learn kernels that 'fire' when they see a specific feature at a given spatial position of the input. These are commonly known as activations.\n\n| Input Vector | | | | | | Pooled Vector | | | Kernel | | | Destination Pixel |\n| - | - | - | - | - | - | - | - | - | - | - | - | - |\n| 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 0 | 0 | -8 |\n| 0 | 1 | 2 | 1 | 1 | 2 | 0 | 1 | 2 | 0 | 0 | 0 | |\n| 0 | 1 | 1 | 1 | 1 | 1 | 0 | 1 | 1 | 0 | 0 | -4 | |\n| 1 | 0 | 0 | 0 | 0 | 0 | | | | | | | |\n| 0 | 0 | 1 | 1 | 1 | 0 | | | | | | | |\n| 0 | 1 | 1 | 1 | 1 | 1 | | | | | | | |\n\n\nFig. 4: A visual representation of a convolutional layer. The centre element of the kernel is placed over the input vector, of which is then calculated and replaced with a weighted sum of itself and any nearby pixels.\n\nEvery kernel will have a corresponding activation map, of which will be stacked along the depth dimension to form the full output volume from the convolutional layer.\n\nAs we alluded to earlier, training ANNs on inputs such as images results in models of which are too big to train effectively. This comes down to the fully-connected manner of standard ANN neurons, so to mitigate against this every neuron in a convolutional layer is only connected to small region of the input volume. The dimensionality of this region is commonly referred to as the receptive field size of the neuron. The magnitude of the connectivity through the depth is nearly always equal to the depth of the input.\n\nFor example, if the input to the network is an image of size 64 \u00d7 64 \u00d7 3 (a RGB-coloured image with a dimensionality of 64 \u00d7 64) and we set the receptive field size as 6 \u00d7 6, we would have a total of 108 weights on each neuron within the convolutional layer. (6 \u00d7 6 \u00d7 3 where 3 is the magnitude of connectivity across the depth of the volume) To put this into perspective, a standard neuron seen in other forms of ANN would contain 12,288 weights each.\n\nConvolutional layers are also able to significantly reduce the complexity of the model through the optimisation of its output. These are optimised through three hyperparameters, the depth, the stride and setting zero-padding.\n\nIntroduction to Convolutional Neural Networks    7\n\nThe depth of the output volume produced by the convolutional layers can be manually set through the number of neurons within the layer to a the same region of the input. This can be seen with other forms of ANNs, where the all of the neurons in the hidden layer are directly connected to every single neuron beforehand. Reducing this hyperparameter can significantly minimise the total number of neurons of the network, but it can also significantly reduce the pattern recognition capabilities of the model.\n\nWe are also able to define the stride in which we set the depth around the spatial dimensionality of the input in order to place the receptive field. For example if we were to set a stride as 1, then we would have a heavily overlapped receptive field producing extremely large activations. Alternatively, setting the stride to a greater number will reduce the amount of overlapping and produce an output of lower spatial dimensions.\n\nZero-padding is the simple process of padding the border of the input, and is an effective method to give further control as to the dimensionality of the output volumes.\n\nIt is important to understand that through using these techniques, we will alter the spatial dimensionality of the convolutional layers output. To calculate this, you can make use of the following formula:\n\n$$(V - R) + 2Z \\over S + 1$$\n\nWhere V represents the input volume size (height\u00d7width\u00d7depth), R represents the receptive field size, Z is the amount of zero padding set and S referring to the stride. If the calculated result from this equation is not equal to a whole integer then the stride has been incorrectly set, as the neurons will be unable to fit neatly across the given input.\n\nDespite our best efforts so far we will still find that our models are still enormous if we use an image input of any real dimensionality. However, methods have been developed as to greatly curtail the overall number of parameters within the convolutional layer.\n\nParameter sharing works on the assumption that if one region feature is useful to compute at a set spatial region, then it is likely to be useful in another region. If we constrain each individual activation map within the output volume to the same weights and bias, then we will see a massive reduction in the number of parameters being produced by the convolutional layer.\n\nAs a result of this as the backpropagation stage occurs, each neuron in the output will represent the overall gradient of which can be totalled across the depth - thus only updating a single set of weights, as opposed to every single one.\n\n8      Keiron O'Shea et al.",
+        "sub_heading": "2.2 Convolutional layer",
+        "collection_name": "cnn1",
+        "similarity": 0.8848913908004761
+    },
+    {
+        "text": "As noted earlier, CNNs primarily focus on the basis that the input will be comprised of images. This focuses the architecture to be set up in way to best suit the need for dealing with the specific type of data.\n\n4      Keiron O'Shea et al.\n\nOne of the key differences is that the neurons that the layers within the CNN are comprised of neurons organised into three dimensions, the spatial dimensionality of the input (height and the width) and the depth. The depth does not refer to the total number of layers within the ANN, but the third dimension of a activation volume. Unlike standard ANNS, the neurons within any given layer will only connect to a small region of the layer preceding it.\n\nIn practice this would mean that for the example given earlier, the input 'volume' will have a dimensionality of 64 \u00d7 64 \u00d7 3 (height, width and depth), leading to a final output layer comprised of a dimensionality of 1 \u00d7 1 \u00d7 n (where n represents the possible number of classes) as we would have condensed the full input dimensionality into a smaller volume of class scores filed across the depth dimension.",
+        "sub_heading": "2 CNN architecture",
+        "collection_name": "cnn1",
+        "similarity": 0.835577130317688
+    },
+    {
+        "text": "Convolutional Neural Networks (CNNs), introduced by Le Cun et al. [6] are a class of biologically inspired neural networks which solve equation (1) by passing X through a series of convolutional filters and simple non-linearities. They have shown remarkable results in a wide variety of machine learning problems [8]. Figure 1 shows a typical CNN architecture.\n\nA convolutional neural network has a hierarchical architecture. Starting from the input signal x, each subsequent layer x_j is computed as\n\n$$x_j = \u03c1W_jx_{j-1} \\quad (5)$$\n\nHere W_j is a linear operator and \u03c1 is a non-linearity. Typically, in a CNN, W_j is a convolution, and \u03c1 is a rectifier max(x, 0) or sigmoid 1/(1+exp(\u2212x)). It is easier to think of the operator W_j as a stack of convolutional filters. So the layers are filter maps and each layer can be written as a sum of convolutions of the previous layer.\n\n$$x_j(u, k_j) = \u03c1(\\sum_k (x_{j-1}(., k) * W_{j,k_j}(., k))(u)) \\quad (6)$$\n\nHere * is the discrete convolution operator:\n\n$$(f * g)(x) = \\sum_{u=-\\infty}^{\\infty} f(u)g(x - u) \\quad (7)$$\n\nThe optimization problem defined by a convolutional neural network is highly non-convex. So typically, the weights W_j are learned by stochastic gradient descent, using the backpropagation algorithm to compute gradients.\n\nFigure 1: Architecture of a Convolutional Neural Network (from LeCun et al. [7])\n\n| INPUT 32x32 | C1: feature maps 6\\@28x28 | C3: f. maps 16\\@10x10 | S4: f. maps 16\\@5x5 | C5: layer 120 | F6: layer 84 | OUTPUT 10 |\n| - | - | - | - | - | - | - |\n| Convolutions | | Subsampling | Convolutions | Subsampling | Full connection | Gaussian connections |\n| | | | | | | Full connection |",
+        "sub_heading": "1.5 Convolutional Neural Networks",
+        "collection_name": "cnn2",
+        "similarity": 0.9026689529418945
+    },
+    {
+        "text": "The scattering transform described in the previous section provides a simple view of a general convolutional neural netowrk. While it provides intuition behind the working of CNNs, the transformation suffers from high variance and loss of information because we only consider single channel convolutions. To analyze the properties of general CNN architectures, we must allow for channel combinations. Mallat [10] extends previously introduced tools to develop a mathematical framework for this analysis. The theory is, however, out of the scope of this paper. At a high level, the extension is achieved by replacing the requirement of contractions and invariants to translations by contractions along adaptive groups of local symmetries. Further, the wavelets are replaced by adapted filter weights similar to deep learning models.",
+        "sub_heading": "5 General Convolutional Neural Network Architectures",
+        "collection_name": "cnn2",
+        "similarity": 0.8422203063964844
+    },
+    {
+        "text": "Mallat [10] introduced a mathematical framework for analyzing the properties of convolutional networks. The theory is based on extensive prior work on wavelet scattering (see for example [2, 1]) and illustrates that to compute invariants, we must separate variations of X at different scales with a wavelet transform. The theory is a first step towards understanding general classes of CNNs, and this paper presents its key concepts.",
+        "sub_heading": "1.6 A mathematical framework for CNNs",
+        "collection_name": "cnn2",
+        "similarity": 0.8173869848251343
+    },
+    {
+        "text": "The WFT fails because it introduces scale (the width of the window) into the analysis. The continuous wavelet transform involves scale too, but it considers all possible scalings and avoids the problem faced by the WFT. Again, we begin with a window function \u03c8 (supported on [\u2212T, 0]), this time called a mother wavelet. For some fixed p \u2265 0, we define\n\n$$\u03c8_s(u) \u2261 |s|^{-p}\u03c8(\\frac{u}{s})$$\n(10)\n\nThe scale s is allowed to be any non-zero real number. With this family of wavelets, we define the continuous wavelet transform (CWT) as\n\n$$\\tilde{f}(s, t) \u2261 (f * \u03c8_s)(t)$$\n(11)\n\nwhere * is the continuous convolution operator:\n\n$$(p * q)(x) \u2261 \\int_{-\\infty}^{\\infty} p(u)q(x - u)du$$\n(12)\n\nThe continuous wavelet transform captures variations in f at a particular scale. It provides the foundation for the operation of CNNs, as will be explored next.",
+        "sub_heading": "2.3 Continuous wavelet transform",
+        "collection_name": "cnn2",
+        "similarity": 0.8103387951850891
+    }
+]
+
+        ### Output Format:
+        - Use Markdown format for headings (##) and sub-headings (###).
+        - Each heading should be followed by its corresponding sub-headings and summary.
+        - Ensure formulas are formatted correctly for LaTeX conversion.
+        - Provide unique summaries for each heading without repeating information.
+
+        ### Example Output:
+
+        ## 1 Main Heading
+        Brief introductory summary.
+
+        ### 1.1 Sub-heading
+        Concise summary with key insights.
+
+        ### 1.2 Another Sub-heading
+        Further insights under the same heading.
+
+        $$ a^2 + b^2 = c^2 $$
+
+        ## 2 Second Main Heading
+        Another introductory summary.
+
+        ### 2.1 Sub-heading
+        Detailed explanation with a formula:
+
+        $E = mc^2$
+        

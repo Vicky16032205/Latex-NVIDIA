@@ -1,0 +1,57 @@
+
+
+        You are an AI model designed to generate a well-structured Literature Review section in IEEE format based on given references. Your task is to synthesize the key findings, methodologies, and contributions of the provided papers while maintaining an academic writing style.
+
+        Instructions:
+        - Summarize Key Findings - Extract and summarize relevant insights from each reference, ensuring that similar studies are grouped logically.
+        - Cite Properly - Use IEEE citation format, e.g., "Handwriting digit recognition has been extensively studied using neural networks [1]."
+        - Maintain Logical Flow - Organize the literature review into a coherent structure, categorizing related studies.
+        - Use Formal Language - Ensure the text aligns with academic writing standards and maintains objectivity.
+        - Avoid Direct Copying - Rewrite and paraphrase information in a scholarly manner.
+        Example Input:
+        [1] Abu Ghosh, M.M., & Maghari, A.Y. (2017). A Comparative Study on Handwriting Digit Recognition Using Neural Networks. *IEEE*.  
+        [2] Alizadeh, S., & Fazel, A. (2017). Convolutional Neural Networks for Facial Expression Recognition. *Computer Vision and Pattern Recognition*. Cornell University Library.
+        Expected Output:
+        
+        Handwriting digit recognition has been widely explored using neural networks. Abu Ghosh and Maghari [1] conducted a comparative analysis of different neural network architectures, demonstrating that convolutional neural networks (CNNs) outperform traditional multilayer perceptron models in terms of accuracy and robustness. Their study highlights the importance of feature extraction and layer depth in achieving high classification performance.
+
+        Similarly, CNNs have also been applied to facial expression recognition. Alizadeh and Fazel [2] proposed a deep learning approach that utilizes convolutional layers to automatically extract features from facial images, achieving state-of-the-art accuracy. Their work underscores the effectiveness of deep networks in recognizing complex patterns in visual data.
+
+        By leveraging CNNs, both studies demonstrate the adaptability of deep learning in computer vision applications, reinforcing the need for optimized architectures tailored to specific recognition tasks.
+
+        Note:  Do not include text like I understand or here is your summary and Do not mension heading at start.
+               Do not mention multiple i.e. more then one reference together eg [3, 4] or [1, 5 , 9] is not allowed.
+
+        INPUT:
+        [1] Ciresan, D., Meier, U., Schmidhuber, J.: "Multi-column deep neural networks for image classification". In: Computer Vision and Pattern Recognition (CVPR), 2012 IEEE Conference on. pp. 3642–3649. IEEE (2012)
+[2] Cireșan, D.C., Giusti, A., Gambardella, L.M., Schmidhuber, J.: "Mitosis detection in breast cancer histology images with deep neural networks". In: Medical Image Computing and Computer-Assisted Intervention–MICCAI 2013, pp. 411–418. Springer (2013)
+[3] Ciresan, D.C., Meier, U., Masci, J., Maria Gambardella, L., Schmidhuber, J.: "Flexible, high performance convolutional neural networks for image classification". In: IJCAI Proceedings-International Joint Conference on Artificial Intelligence. vol. 22, p. 1237 (2011)
+[4] Cireșan, D.C., Meier, U., Gambardella, L.M., Schmidhuber, J.: "Convolutional neural network committees for handwritten character classification". In: Document Analysis and Recognition (ICDAR), 2011 International Conference on. pp. 1135–1139. IEEE (2011)
+[5] Egmont-Petersen, M., de Ridder, D., Handels, H.: "Image processing with neural networks a review". Pattern recognition 35(10), 2279–2301 (2002)
+[6] Farabet, C., Martini, B., Akselrod, P., Talay, S., LeCun, Y., Culurciello, E.: "Hardware accelerated convolutional neural networks for synthetic vision systems". In: Circuits and Systems (ISCAS), Proceedings of 2010 IEEE International Symposium on. pp. 257–260. IEEE (2010)
+[7] Hinton, G.: "A practical guide to training restricted boltzmann machines". Momentum 9(1), 926 (2010)
+[8] Hinton, G.E., Srivastava, N., Krizhevsky, A., Sutskever, I., Salakhutdinov, R.R.: "Improving neural networks by preventing co-adaptation of feature detectors". arXiv preprint arXiv:1207.0580 (2012)
+[9] Ji, S., Xu, W., Yang, M., Yu, K.: "3d convolutional neural networks for human action recognition". Pattern Analysis and Machine Intelligence, IEEE Transactions on 35(1), 221–231 (2013)
+[10] Karpathy, A., Toderici, G., Shetty, S., Leung, T., Sukthankar, R., Fei-Fei, L.: "Large-scale video classification with convolutional neural networks". In: Computer Vision and Pattern Recognition (CVPR), 2014 IEEE Conference on. pp. 1725–1732. IEEE (2014)
+[11] Krizhevsky, A., Sutskever, I., Hinton, G.E.: "Imagenet classification with deep convolutional neural networks". In: Advances in neural information processing systems. pp. 1097–1105 (2012)
+[12] LeCun, Y., Boser, B., Denker, J.S., Henderson, D., Howard, R.E., Hubbard, W., Jackel, L.D.: "Backpropagation applied to handwritten zip code recognition". Neural computation 1(4), 541–551 (1989)
+[13] LeCun, Y., Bottou, L., Bengio, Y., Haffner, P.: "Gradient-based learning applied to document recognition". Proceedings of the IEEE 86(11), 2278–2324 (1998)
+[14] Nebauer, C.: "Evaluation of convolutional neural networks for visual recognition". Neural Networks, IEEE Transactions on 9(4), 685–696 (1998)
+[15] Simard, P.Y., Steinkraus, D., Platt, J.C.: "Best practices for convolutional neural networks applied to visual document analysis". In: null. p. 958. IEEE (2003)
+[16] Srivastava, N.: "Improving neural networks with dropout". Ph.D. thesis, University of Toronto (2013)
+[17] Szarvas, M., Yoshizawa, A., Yamamoto, M., Ogata, J.: "Pedestrian detection with convolutional neural networks". In: Intelligent Vehicles Symposium, 2005. Proceedings. IEEE. pp. 224–229. IEEE (2005)
+[18] Szegedy, C., Toshev, A., Erhan, D.: "Deep neural networks for object detection". In: Advances in Neural Information Processing Systems. pp. 2553–2561 (2013)
+[19] Tivive, F.H.C., Bouzerdoum, A.: "A new class of convolutional neural networks (siconnets) and their application of face detection". In: Neural Networks, 2003. Proceedings of the International Joint Conference on. vol. 3, pp. 2157–2162. IEEE (2003)
+[20] Zeiler, M.D., Fergus, R.: "Stochastic pooling for regularization of deep convolutional neural networks". arXiv preprint arXiv:1301.3557 (2013)
+[21] Zeiler, M.D., Fergus, R.: "Visualizing and understanding convolutional networks". In: Computer Vision–ECCV 2014, pp. 818–833. Springer (2014)
+[22] Andén, J., Mallat, S.: "Deep scattering spectrum". Signal Processing, IEEE Transactions on, 62(16):4114–4128, 2014.
+[23] Bruna, J., Mallat, S.: "Invariant scattering convolution networks". Pattern Analysis and Machine Intelligence, IEEE Transactions on, 35(8):1872–1886, 2013.
+[24] Cortes, C., Vapnik, V.: "Support-vector networks". Machine learning, 20(3): 273–297, 1995.
+[25] Bruna Estrach, J.: "Scattering representations for recognition".
+[26] Kaiser Gerald.: "A friendly guide to wavelets", 1994.
+[27] Boser Le Cun, B, Denker, J.S., Henderson, D., Howard, R.E., Hubbard, W., Jackel, L.D.: "Handwritten digit recognition with a back-propagation network". In Advances in neural information processing systems. Citeseer, 1990.
+[28] Mallat, S.: "Group invariant scattering". Communications on Pure and Applied Mathematics, 65(10):1331–1398, 2012.
+[29] Mallat, S.: "Understanding deep convolutional networks". arXiv preprint arXiv:1601.04920, 2016.
+[30] Yann LeCun, Yoshua Bengio, and Geoffrey Hinton. "Deep learning". Nature, 521(7553):436–444, 2015.
+
+        

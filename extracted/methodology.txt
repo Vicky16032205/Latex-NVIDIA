@@ -1,0 +1,28 @@
+{
+    "Methodology": {
+        "cnn1": [
+            {
+                "text": "Convolutional Neural Networks differ to other forms of Artifical Neural Network in that instead of focusing on the entirety of the problem domain, knowledge about the specific type of input is exploited. This in turn allows for a much simpler network architecture to be set up.\n\nThis paper has outlined the basic concepts of Convolutional Neural Networks, explaining the layers required to build one and detailing how best to structure the network in most image analysis tasks.\n\nResearch in the field of image analysis using neural networks has somewhat slowed in recent times. This is partly due to the incorrect belief surrounding the level of complexity and knowledge required to begin modelling these superbly powerful machine learning algorithms. The authors hope that this paper has in some way reduced this confusion, and made the field more accessible to beginners.",
+                "similarity": 0.8373116850852966
+            }
+        ],
+        "cnn2": [
+            {
+                "text": "In this paper, we tried to analyze the properties of convolutional neural networks. A simplified model, the scattering transform was introduced as a first step towards understanding CNN operations. We saw that the feature transformation is built on top of wavelet transforms which separate variations at different scales using a wavelet transform. The analysis of general CNN architectures was not considered in this paper, but even this analysis is only a first step towards a full mathematical understanding of convolutional neural networks.",
+                "similarity": 0.8467366695404053
+            }
+        ],
+        "cnn3": [
+            {
+                "text": "This section will first discuss our new technique for labeling the positive and negative data sets, before explaining our implementation of the FF algorithm in detail.",
+                "similarity": 0.8417863249778748
+            }
+        ],
+        "cnn4": [
+            {
+                "text": "In order to develop a dynamically expanding convolutional neural-network architecture, we need an expansion criteria that triggers when to expand the model. The criteria we use is the natural expansion score as defined in section 2.1.",
+                "similarity": 0.9301211833953857
+            }
+        ]
+    }
+}

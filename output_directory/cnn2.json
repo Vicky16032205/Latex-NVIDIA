@@ -1,0 +1,262 @@
+[
+    {
+        "content": "Convolutional Neural Networks (CNNs) exhibit extraordinary performance on a variety of machine learning tasks. However, their mathematical properties and behavior are quite poorly understood. There is some work, in the form of a framework, for analyzing the operations that they perform. The goal of this project is to present key results from this theory, and provide intuition for why CNNs work.",
+        "metadata": {
+            "main title": "Understanding Convolutional Neural Networks",
+            "section title": "Abstract",
+            "sub heading": ""
+        },
+        "embeddings-Main-Headding": "",
+        "embeddings-Section-Headding": "",
+        "embeddings-Sub-Headding": "",
+        "subheadings": [
+            {
+                "content": "",
+                "metadata": {
+                    "main title": "Understanding Convolutional Neural Networks",
+                    "section title": "Abstract",
+                    "sub heading": "1 Introduction"
+                },
+                "embeddings-Main-Headding": "",
+                "embeddings-Section-Headding": "",
+                "embeddings-Sub-Headding": "",
+                "subheadings": [
+                    {
+                        "content": "We begin by formalizing the supervised learning problem which CNNs are designed to solve. We will consider both regression and classification, but restrict the label (dependent variable) to be univariate. Let $X \\in \\mathcal{X} \\subset \\mathbb{R}^d$ and $Y \\in \\mathcal{Y} \\subset \\mathbb{R}$ be two random variables. We typically have $Y = f(X)$ for some unknown $f$. Given a sample $\\{(x_i, y_i)\\}_{i=1,\\ldots,n}$ drawn from the joint distribution of $X$ and $Y$, the goal of supervised learning is to learn a mapping $\\hat{f} : \\mathcal{X} \\to \\mathcal{Y}$ which minimizes the expected loss, as defined by a suitable loss function $L : \\mathcal{Y} \\times \\mathcal{Y} \\to \\mathbb{R}$. However, minimizing over the set of all functions from $\\mathcal{X}$ to $\\mathcal{Y}$ is ill-posed, so we restrict the space of hypotheses to some set $\\mathcal{F}$, and define\n\n$$\\hat{f} = \\arg\\min_{f\\in\\mathcal{F}} \\mathbb{E}[L(Y, f(X))]$$",
+                        "metadata": {
+                            "main title": "Understanding Convolutional Neural Networks",
+                            "section title": "Abstract",
+                            "sub heading": "1 Introduction"
+                        },
+                        "embeddings-Main-Headding": "",
+                        "embeddings-Section-Headding": "",
+                        "embeddings-Sub-Headding": "",
+                        "subheadings": []
+                    },
+                    {
+                        "content": "A common strategy for learning classifiers, and the one employed by kernel methods, is to linearize the variations in $f$ with a feature representation. A feature representation is any transformation of the input variable $X$; a change of variable. Let this transformation be given by $\\Phi(X)$. Note that the transformed variable need not have a lower dimension than $X$. We would like to construct a feature representation such that $f$ is linearly separable in the transformed space i.e.\n\n$$f(X) = \\langle\\Phi(X), w\\rangle$$\n\nfor regression, or\n\n$$f(X) = \\text{sign}(\\langle\\Phi(X), w\\rangle)$$\n\nfor binary classification\u00b9. Classification algorithms like Support Vector Machines (SVM) [3] use a fixed feature representation that may, for instance, be defined by a kernel.\n\n\u00b9Multi-class classification problems can be considered as multiple binary classification problems.\n\n29th Conference on Neural Information Processing Systems (NIPS 2016), Barcelona, Spain.",
+                        "metadata": {
+                            "main title": "Understanding Convolutional Neural Networks",
+                            "section title": "Abstract",
+                            "sub heading": "1 Introduction"
+                        },
+                        "embeddings-Main-Headding": "",
+                        "embeddings-Section-Headding": "",
+                        "embeddings-Sub-Headding": "",
+                        "subheadings": []
+                    }
+                ]
+            },
+            {
+                "content": "The transformation induced by kernel methods do not always linearize f especially in the case of natural image classification. To find suitable feature transformations for natural images, we must consider their invariance properties. Natural images show a wide range of invariances e.g. to pose, lighting, scale. To learn good feature representations, we must suppress these intra-class variations, while at the same time maintaining inter-class variations. This notion is formalized with the concept of symmetries as defined next.\n\n**Definition 1 (Global Symmetry)** Let g be an operator from X to X. g is a global symmetry of f if f(g.x) = f(x) \u2200x \u2208 X.\n\n**Definition 2 (Local Symmetry)** Let G be a group of operators from X to X with norm |.|. G is a group of local symmetries of f if for each x \u2208 X, there exists some C_x > 0 such that f(g.x) = f(x) for all g \u2208 G such that |g| < C_x.\n\nGlobal symmetries rarely exist in real images, so we can try to construct features that linearize f along local symmetries. The symmetries we will consider are translations and diffeomorphisms, which are discussed next.",
+                "metadata": {
+                    "main title": "Understanding Convolutional Neural Networks",
+                    "section title": "Abstract",
+                    "sub heading": "1.3 Symmetries"
+                },
+                "embeddings-Main-Headding": "",
+                "embeddings-Section-Headding": "",
+                "embeddings-Sub-Headding": "",
+                "subheadings": []
+            },
+            {
+                "content": "Given a signal x, we can interpolate its dimensions and define x(u) for all u \u2208 R^n (n = 2 for images). A translation is an operator g given by g.x(u) = x(u \u2212 g). A diffeomorphism is a deformation; small diffeomorphisms can be written as g.x(u) = x(u \u2212 g(u)).\n\nWe seek feature transformations \u03a6 which linearize the action of local translations and diffeomorphisms. This can be expressed in terms of a Lipschitz continuity condition.\n\n$$\u2016\u03a6(g.x) \u2212 \u03a6(x)\u2016 \u2264 C|g|\u2016x\u2016 \\quad (4)$$",
+                "metadata": {
+                    "main title": "Understanding Convolutional Neural Networks",
+                    "section title": "Abstract",
+                    "sub heading": "1.4 Translations and Diffeomorphisms"
+                },
+                "embeddings-Main-Headding": "",
+                "embeddings-Section-Headding": "",
+                "embeddings-Sub-Headding": "",
+                "subheadings": []
+            },
+            {
+                "content": "Convolutional Neural Networks (CNNs), introduced by Le Cun et al. [6] are a class of biologically inspired neural networks which solve equation (1) by passing X through a series of convolutional filters and simple non-linearities. They have shown remarkable results in a wide variety of machine learning problems [8]. Figure 1 shows a typical CNN architecture.\n\nA convolutional neural network has a hierarchical architecture. Starting from the input signal x, each subsequent layer x_j is computed as\n\n$$x_j = \u03c1W_jx_{j-1} \\quad (5)$$\n\nHere W_j is a linear operator and \u03c1 is a non-linearity. Typically, in a CNN, W_j is a convolution, and \u03c1 is a rectifier max(x, 0) or sigmoid 1/(1+exp(\u2212x)). It is easier to think of the operator W_j as a stack of convolutional filters. So the layers are filter maps and each layer can be written as a sum of convolutions of the previous layer.\n\n$$x_j(u, k_j) = \u03c1(\\sum_k (x_{j-1}(., k) * W_{j,k_j}(., k))(u)) \\quad (6)$$\n\nHere * is the discrete convolution operator:\n\n$$(f * g)(x) = \\sum_{u=-\\infty}^{\\infty} f(u)g(x - u) \\quad (7)$$\n\nThe optimization problem defined by a convolutional neural network is highly non-convex. So typically, the weights W_j are learned by stochastic gradient descent, using the backpropagation algorithm to compute gradients.\n\nFigure 1: Architecture of a Convolutional Neural Network (from LeCun et al. [7])\n\n| INPUT 32x32 | C1: feature maps 6\\@28x28 | C3: f. maps 16\\@10x10 | S4: f. maps 16\\@5x5 | C5: layer 120 | F6: layer 84 | OUTPUT 10 |\n| - | - | - | - | - | - | - |\n| Convolutions | | Subsampling | Convolutions | Subsampling | Full connection | Gaussian connections |\n| | | | | | | Full connection |",
+                "metadata": {
+                    "main title": "Understanding Convolutional Neural Networks",
+                    "section title": "Abstract",
+                    "sub heading": "1.5 Convolutional Neural Networks"
+                },
+                "embeddings-Main-Headding": "",
+                "embeddings-Section-Headding": "",
+                "embeddings-Sub-Headding": "",
+                "subheadings": []
+            },
+            {
+                "content": "Mallat [10] introduced a mathematical framework for analyzing the properties of convolutional networks. The theory is based on extensive prior work on wavelet scattering (see for example [2, 1]) and illustrates that to compute invariants, we must separate variations of X at different scales with a wavelet transform. The theory is a first step towards understanding general classes of CNNs, and this paper presents its key concepts.",
+                "metadata": {
+                    "main title": "Understanding Convolutional Neural Networks",
+                    "section title": "Abstract",
+                    "sub heading": "1.6 A mathematical framework for CNNs"
+                },
+                "embeddings-Main-Headding": "",
+                "embeddings-Section-Headding": "",
+                "embeddings-Sub-Headding": "",
+                "subheadings": []
+            },
+            {
+                "content": "Although the framework based on wavelet transforms is quite successful in analyzing the operations of CNNs, the motivation or need for wavelets is not immediately obvious. So we will first consider the more general problem of signal processing, and study the need for wavelet transforms.\n\nIn what follows, we will consider a function f(t) where t \u2208 R can be considered as representing time, which makes f a time varying function like an audio signal. The concepts, however, extend quite naturally to images as well, when we change t to a two dimensional vector. Given such a signal, we are often interested in studying its variations across time. With the image metaphor, this corresponds to studying the variations in different parts of the image. We will consider a progression of tools for analyzing such variations. Most of the following material is from the book by Gerald [5].",
+                "metadata": {
+                    "main title": "Understanding Convolutional Neural Networks",
+                    "section title": "Abstract",
+                    "sub heading": "2 The need for wavelets"
+                },
+                "embeddings-Main-Headding": "",
+                "embeddings-Section-Headding": "",
+                "embeddings-Sub-Headding": "",
+                "subheadings": [
+                    {
+                        "content": "The Fourier transform of f is defined as\n\n$$\\hat{f}(\\omega) \\equiv \\int_{-\\infty}^{\\infty} f(t)e^{-2\\pi i\\omega t} dt$$\n\nThe Fourier transform is a powerful tool which decomposes f into the frequencies that make it up. However, it should be quite clear from equation (8) that it is useless for the task we are interested in. Since the integral is from \u2212\u221e to \u221e, $\\hat{f}$ is an average over all time and does not have any local information.",
+                        "metadata": {
+                            "main title": "Understanding Convolutional Neural Networks",
+                            "section title": "Abstract",
+                            "sub heading": "2 The need for wavelets"
+                        },
+                        "embeddings-Main-Headding": "",
+                        "embeddings-Section-Headding": "",
+                        "embeddings-Sub-Headding": "",
+                        "subheadings": []
+                    },
+                    {
+                        "content": "To avoid the loss of information that comes from integrating over all time, we might use a weight function that localizes f in time. Without going into specifics, let us consider some function g supported on [\u2212T, 0] and define the windowed Fourier transform (WFT) as\n\n$$\\tilde{f}(\\omega, t) \\equiv \\int_{-\\infty}^{\\infty} f(u)g(u - t)e^{-2\\pi i\\omega u} du$$\n\nIt should be intuitively clear that the WFT can capture local variations in a time window of width T. Further, it can be shown that the WFT also provides accurate information about f in a frequency band\n\nof some width \u03a9. So does the WFT solve our problem? Unfortunately not; and this is a consequence\nof Theorem 1 which is stated very informally next.",
+                        "metadata": {
+                            "main title": "Understanding Convolutional Neural Networks",
+                            "section title": "Abstract",
+                            "sub heading": "2 The need for wavelets"
+                        },
+                        "embeddings-Main-Headding": "",
+                        "embeddings-Section-Headding": "",
+                        "embeddings-Sub-Headding": "",
+                        "subheadings": []
+                    }
+                ]
+            },
+            {
+                "content": "Let f be a function which is small outside a time-interval of length T, and let its Fourier transform be small outside a frequency-band of width \u03a9. There exists a positive constant c such that\n\n$$\u03a9T \u2265 c$$\n\nBecause of the Uncertainty Principle, T and \u03a9 cannot both be small. Roughly speaking, this implies that the WFT cannot capture small variations in a small time window (or in the case of images, a small patch).",
+                "metadata": {
+                    "main title": "Understanding Convolutional Neural Networks",
+                    "section title": "Abstract",
+                    "sub heading": "Theorem 1 (Uncertainty Principle)\u00b2"
+                },
+                "embeddings-Main-Headding": "",
+                "embeddings-Section-Headding": "",
+                "embeddings-Sub-Headding": "",
+                "subheadings": []
+            },
+            {
+                "content": "The WFT fails because it introduces scale (the width of the window) into the analysis. The continuous wavelet transform involves scale too, but it considers all possible scalings and avoids the problem faced by the WFT. Again, we begin with a window function \u03c8 (supported on [\u2212T, 0]), this time called a mother wavelet. For some fixed p \u2265 0, we define\n\n$$\u03c8_s(u) \u2261 |s|^{-p}\u03c8(\\frac{u}{s})$$\n(10)\n\nThe scale s is allowed to be any non-zero real number. With this family of wavelets, we define the continuous wavelet transform (CWT) as\n\n$$\\tilde{f}(s, t) \u2261 (f * \u03c8_s)(t)$$\n(11)\n\nwhere * is the continuous convolution operator:\n\n$$(p * q)(x) \u2261 \\int_{-\\infty}^{\\infty} p(u)q(x - u)du$$\n(12)\n\nThe continuous wavelet transform captures variations in f at a particular scale. It provides the foundation for the operation of CNNs, as will be explored next.",
+                "metadata": {
+                    "main title": "Understanding Convolutional Neural Networks",
+                    "section title": "Abstract",
+                    "sub heading": "2.3 Continuous wavelet transform"
+                },
+                "embeddings-Main-Headding": "",
+                "embeddings-Section-Headding": "",
+                "embeddings-Sub-Headding": "",
+                "subheadings": []
+            },
+            {
+                "content": "Having motivated the need for a wavelet transform, we will now construct a feature representation using the wavelet transform. Note that convolutional neural network are covariant to translations because they use convolutions for linear operators. So we will focus on transformations that linearize diffeomorphisms.",
+                "metadata": {
+                    "main title": "Understanding Convolutional Neural Networks",
+                    "section title": "Abstract",
+                    "sub heading": "3 Scale separation with wavelets"
+                },
+                "embeddings-Main-Headding": "",
+                "embeddings-Section-Headding": "",
+                "embeddings-Sub-Headding": "",
+                "subheadings": [
+                    {
+                        "content": "Let \u03c6_J(u) = 2^(-nJ) \u03c6(2^(-J) u) be an averaging kernel with \u222b \u03c6(u)du = 1. Here n is the dimension of the index in X, for example, n = 2 for images. Let {\u03c8_k}^K_{k=1} be a set of K wavelets with zero average: \u222b \u03c8_k(u)du = 0, and from them define \u03c8_j,k(u) \u2261 2^(-jn)\u03c8_k(2^(-j)u). Let \u03a6_J be a feature transformation defined as\n\n$$\u03a6_Jx(u, j, k) = |x * \u03c8_{j,k}| * \u03c6_J (u)$$\n\nThen \u03a6_J is locally invariant to translations at scale 2^J, and Lipschitz continuous to the actions of diffeomorphisms as defined by equation (4) under the following diffeomorphism norm.\n\n$$|g| = 2^{-J} \\sup_{u\u2208R^n} |g(u)| + \\sup_{u\u2208R^n} |\\nabla g(u)|$$\n(13)\n\nTheorem 2 shows that \u03a6_J satisfies the regularity conditions which we seek. However, it leads to a loss of information due to the averaging with \u03c6_J. The lost information is recovered by a hierarchy of wavelet decompositions as discussed next.\n\n\u00b2Contrary to popular belief, the Uncertainty Principle is a mathematical, not physical property.\n\n\nArchitecture of the scattering transform\n\nFigure 2: Architecture of the scattering transform (from Estrach [4])",
+                        "metadata": {
+                            "main title": "Understanding Convolutional Neural Networks",
+                            "section title": "Abstract",
+                            "sub heading": "3 Scale separation with wavelets"
+                        },
+                        "embeddings-Main-Headding": "",
+                        "embeddings-Section-Headding": "",
+                        "embeddings-Sub-Headding": "",
+                        "subheadings": []
+                    }
+                ]
+            },
+            {
+                "content": "Convolutional Neural Networks transform their input with a series of linear operators and point-wise non-linearities. To study their properties, we first consider a simpler feature transformation, the scattering transform introduced by Mallat [9]. As was discussed in section 1.5, CNNs compute multiple convolutions across channels in each layer; So as a simplification, we consider the transformation obtained by convolving a single channel:\n\n$$ x_j(u, k_j) = \\rho((x_{j-1}(., k_{j-1}) * W_{j,h})(u)) $$\n\n(14)\n\nHere $k_j = (k_{j-1}, h)$ and $h$ controls the hierarchical structure of the transformation. Specifically, we can recursively expand the above equation to write\n\n$$ x_J(u, k_J) = \\rho(\\rho(... \\rho(x * W_{1,h_1}) * ...) * W_{J,h_J}) $$\n\n(15)\n\nThis produces a hierarchical transformation with a tree structure rather than a full network. It is possible to show that the above transformation has an equivalent representation through wavelet filters i.e. there exists a sequence $p \\equiv (\\lambda_1, ..., \\lambda_m)$ such that\n\n$$ x_J(u, k_J) = S_J[p]x(u) \\equiv (U[p]x * \\phi_J)(u) \\equiv (\\rho(\\rho(... \\rho(x * \\psi_{\\lambda_1}) * ...) * \\psi_{\\lambda_m}) * \\phi_J)(u) $$\n\n(16)\n\nwhere the $\\psi_{\\lambda_i}$s are suitably chosen wavelet filters and $\\phi_J$ is the averaging filter defined in Theorem 2. This is the wavelet scattering transform; its structure is similar to that of a convolutional neural network as shown in figure 2, but its filters are defined by fixed wavelet functions instead of being learned from the data. Further, we have the following theorem about the scattering transform.\n\n**Theorem 3** Let $S_J[p]$ be the scattering transform as defined by equation (16). Then there exists $C > 0$ such that for all diffeomorphisms $g$, and all $L^2(\\mathbb{R}^n)$ signals $x$,\n\n$$ \\|S_J[p]g.x - S_J[p]x\\| \\leq Cm|g|\\|x\\| $$\n\n(17)\n\nwith the diffeomorphism norm $|g|$ given by equation (13).\n\n\nTheorem 3 shows that the scattering transform is Lipschitz continuous to the action of diffemorphisms. So the action of small deformations is linearized over scattering coefficients. Further, because of its structure, it is naturally locally invariant to translations. It has several other desirable properties [4], and can be used to achieve state of the art classification errors on the MNIST digits dataset [2].",
+                "metadata": {
+                    "main title": "Understanding Convolutional Neural Networks",
+                    "section title": "Abstract",
+                    "sub heading": "4 Scattering Transform"
+                },
+                "embeddings-Main-Headding": "",
+                "embeddings-Section-Headding": "",
+                "embeddings-Sub-Headding": "",
+                "subheadings": []
+            },
+            {
+                "content": "The scattering transform described in the previous section provides a simple view of a general convolutional neural netowrk. While it provides intuition behind the working of CNNs, the transformation suffers from high variance and loss of information because we only consider single channel convolutions. To analyze the properties of general CNN architectures, we must allow for channel combinations. Mallat [10] extends previously introduced tools to develop a mathematical framework for this analysis. The theory is, however, out of the scope of this paper. At a high level, the extension is achieved by replacing the requirement of contractions and invariants to translations by contractions along adaptive groups of local symmetries. Further, the wavelets are replaced by adapted filter weights similar to deep learning models.",
+                "metadata": {
+                    "main title": "Understanding Convolutional Neural Networks",
+                    "section title": "Abstract",
+                    "sub heading": "5 General Convolutional Neural Network Architectures"
+                },
+                "embeddings-Main-Headding": "",
+                "embeddings-Section-Headding": "",
+                "embeddings-Sub-Headding": "",
+                "subheadings": []
+            },
+            {
+                "content": "In this paper, we tried to analyze the properties of convolutional neural networks. A simplified model, the scattering transform was introduced as a first step towards understanding CNN operations. We saw that the feature transformation is built on top of wavelet transforms which separate variations at different scales using a wavelet transform. The analysis of general CNN architectures was not considered in this paper, but even this analysis is only a first step towards a full mathematical understanding of convolutional neural networks.",
+                "metadata": {
+                    "main title": "Understanding Convolutional Neural Networks",
+                    "section title": "Abstract",
+                    "sub heading": "6 Conclusion"
+                },
+                "embeddings-Main-Headding": "",
+                "embeddings-Section-Headding": "",
+                "embeddings-Sub-Headding": "",
+                "subheadings": []
+            },
+            {
+                "content": "[1] Joakim And\u00e9n and St\u00e9phane Mallat. Deep scattering spectrum. Signal Processing, IEEE Transactions on, 62(16):4114\u20134128, 2014.\n\n[2] Joan Bruna and St\u00e9phane Mallat. Invariant scattering convolution networks. Pattern Analysis and Machine Intelligence, IEEE Transactions on, 35(8):1872\u20131886, 2013.\n\n[3] Corinna Cortes and Vladimir Vapnik. Support-vector networks. Machine learning, 20(3): 273\u2013297, 1995.\n\n[4] Joan Bruna Estrach. Scattering representations for recognition.\n\n[5] Kaiser Gerald. A friendly guide to wavelets, 1994.\n\n[6] B Boser Le Cun, John S Denker, D Henderson, Richard E Howard, W Hubbard, and Lawrence D Jackel. Handwritten digit recognition with a back-propagation network. In Advances in neural information processing systems. Citeseer, 1990.\n\n[7] Yann LeCun, L\u00e9on Bottou, Yoshua Bengio, and Patrick Haffner. Gradient-based learning applied to document recognition. Proceedings of the IEEE, 86(11):2278\u20132324, 1998.\n\n[8] Yann LeCun, Yoshua Bengio, and Geoffrey Hinton. Deep learning. Nature, 521(7553):436\u2013444, 2015.\n\n[9] St\u00e9phane Mallat. Group invariant scattering. Communications on Pure and Applied Mathematics, 65(10):1331\u20131398, 2012.\n\n[10] St\u00e9phane Mallat. Understanding deep convolutional networks. arXiv preprint arXiv:1601.04920, 2016.",
+                "metadata": {
+                    "main title": "Understanding Convolutional Neural Networks",
+                    "section title": "Abstract",
+                    "sub heading": "References"
+                },
+                "embeddings-Main-Headding": "",
+                "embeddings-Section-Headding": "",
+                "embeddings-Sub-Headding": "",
+                "subheadings": []
+            }
+        ]
+    },
+    {
+        "content": "Image with caption:  Figure 1: Architecture of a Convolutional Neural Network (from LeCun et al. [7]) ",
+        "metadata": {
+            "source": "output_directory\\cnn2-page3-image94",
+            "image": "C:\\Users\\VICKY\\Desktop\\New folder\\output_directory\\cnn2\\image94-page3.png",
+            "caption": " Figure 1: Architecture of a Convolutional Neural Network (from LeCun et al. [7]) ",
+            "type": "image",
+            "page_num": 3
+        },
+        "embeddings-Main-Headding": "",
+        "embeddings-Section-Headding": "",
+        "embeddings-Sub-Headding": "",
+        "subheadings": []
+    },
+    {
+        "content": "Image with caption:  Figure 2: Architecture of the scattering transform (from Estrach [4]) ",
+        "metadata": {
+            "source": "output_directory\\cnn2-page5-image142",
+            "image": "C:\\Users\\VICKY\\Desktop\\New folder\\output_directory\\cnn2\\image142-page5.png",
+            "caption": " Figure 2: Architecture of the scattering transform (from Estrach [4]) ",
+            "type": "image",
+            "page_num": 5
+        },
+        "embeddings-Main-Headding": "",
+        "embeddings-Section-Headding": "",
+        "embeddings-Sub-Headding": "",
+        "subheadings": []
+    }
+]

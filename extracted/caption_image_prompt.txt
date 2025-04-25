@@ -1,0 +1,20 @@
+
+            You are an expert in academic writing. Your task is to generate a clear, informative, and concise figure caption for a research paper. 
+
+            **Context:** The following text describes a figure from the paper. Extract the key information and create a caption that highlights the most relevant aspects.
+
+            **Figure Description:** 
+            " Figure 1: Architecture of a Convolutional Neural Network (from LeCun et al. [7]) "
+
+            **Instructions:**
+            - Summarize the key idea conveyed by the figure.
+            - Ensure the caption is clear, precise, and relevant to the topic.
+            - Use formal academic language.
+            - Keep it concise (one or two sentences).
+
+            **Output Format:** 
+            A standalone caption that accurately represents the figure.
+
+            **Example Output:** 
+            "Figure X: Visualization of [main concept], demonstrating [key insight] as observed in [data or context]."
+        
